@@ -9,7 +9,7 @@
 #			|---- themes
 #			|---- plugins
 #			|---- wpengine
-#  3. Copy the .gitignore file to ~/deployments
+#  3. Copy the gitignore file to ~/deployments/.gitignore
 #  4. Copy this script to ~/deployments
 #  5. Set permissions on script: chmod 555 ~/deployments/wpengine.sh
 #  6. Symlink script for execution without extension:  ln -s ~/deployments/wpengine.sh /usr/local/bin/wpengine
@@ -19,7 +19,6 @@
 #
 # That is it, make sure to run the script normally without quiet mode to verify everything works as expected.
 #
-# Questions: Send request to kbenedict@postmedia.com or contact a member of the innovation team
 
 # be sure to set the value to the same target per line, make sure all entries in this array are lowercase
 declare -A targets=(    ["staging"]="staging"   ["s"]="staging"

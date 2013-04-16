@@ -1,0 +1,23 @@
+# Installation requirements:
+
+  1. Create path /var/log/wpengine for the logging
+  2. Create the following hierarchy, or modify the script for deployment files:
+              ~/deployments
+                       |---- tmp
+                       |---- themes
+                       |---- plugins
+                       |---- wpengine
+  3. Copy the gitignore file to ~/deployments/.gitignore
+  4. Copy this script to ~/deployments
+  5. Set permissions on script: chmod 555 ~/deployments/wpengine.sh
+  6. Symlink script for execution without extension:  ln -s ~/deployments/wpengine.sh /usr/local/bin/wpengine
+  7. Modify the repos array with the descriptions and *MATCH* up corresponging targets in the targets array.
+  8. Clone all required themes and plugins into the ~/deployments/themes and ~/deployments/plugins folders
+  9. Clone initial wpengine repositories into the path ~/deployments/wpengine/{repo name i.e staging/production}
+
+ That is it, make sure to run the script normally without quiet mode to verify everything works as expected.
+
+ Questions or problems, submit an issue to this repository, or submit a patch request.
+
+Thanks
+
