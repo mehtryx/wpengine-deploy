@@ -29,7 +29,6 @@ Installation requirements
 
 	```
 	# be sure to set the value to the same target per line, make sure all entries in this array are lowercase
-
 	declare -A targets=(    ["staging"]="staging"   ["s"]="staging"
 	                        ["p"]="production"      ["prod"]="production"
 							["production"]="production"
