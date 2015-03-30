@@ -26,6 +26,7 @@ Installation requirements
 5. Set permissions: `chmod 555 ~/deployments/wpengine.sh`
 6. Symlink script for execution without extension: `ln -s ~/deployments/wpengine.sh`
 7. Modyify the repos array with the descriptions and match up corresponding targets:
+
 	```
 	# be sure to set the value to the same target per line, make sure all entries in this array are lowercase
 
@@ -38,12 +39,16 @@ Installation requirements
 							["production"]="git@git.wpengine.com:production/roadkill.git"
 							)
 	```
+
 8. Symlink all required themes and plugins with local path:
+
 	```
 	ln -s ~/path/to/project/wp-content/plugins deployments/plugins
 	ln -s ~/path/to/project/wp-content/themes deployments/themes
 	```
+
 You should have the following listing within deployment:
+
 	```bash
 	lrwxr-xr-x  1 Justin  staff    68B Mar 27 12:29 plugins -> /path/to/project/wp-content/plugins
 	lrwxr-xr-x  1 Justin  staff    67B Mar 27 12:29 themes -> /path/to/project/wp-content/themes
@@ -51,6 +56,7 @@ You should have the following listing within deployment:
 	drwxr-xr-x  3 Justin  staff   102B Mar 27 16:05 wpengine
 	-rwxrwxrwx  1 Justin  staff   6.1K Mar 27 12:48 wpengine.sh
 	```
+
 9. Purge and clone initial wpengine repository into `deployments/wpengine/{repo/name}` via `wpengine.sh`
 10. Run: `sudo wpengine staging|production` to begin deployment process
 
