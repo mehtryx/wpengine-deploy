@@ -47,18 +47,10 @@ Installation requirements
 	ln -s ~/path/to/project/wp-content/themes deployments/themes
 	```
 
+9. Run: `sudo wpengine staging|production` to begin deployment process
 
-9. Purge and clone initial wpengine repository into `deployments/wpengine/{repo/name}` via `wpengine.sh`
-
-	```
-	lrwxr-xr-x  1 Justin  staff    68B Mar 27 12:29 plugins -> /path/to/project/wp-content/plugins
-	lrwxr-xr-x  1 Justin  staff    67B Mar 27 12:29 themes -> /path/to/project/wp-content/themes
-	drwxr-xr-x  4 Justin  staff   136B Mar 27 16:16 tmp
-	drwxr-xr-x  3 Justin  staff   102B Mar 27 16:05 wpengine
-	-rwxrwxrwx  1 Justin  staff   6.1K Mar 27 12:48 wpengine.sh
-	```
-
-10. Run: `sudo wpengine staging|production` to begin deployment process
+10. Please purge and clone the wpengine repo on initial start to grab the latest
+	wpengine instance
 
 That is it, make sure to run the script normally without quiet mode to verify
 everything works as expected.
