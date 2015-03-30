@@ -43,8 +43,8 @@ Installation requirements
 8. Symlink all required themes and plugins with local path:
 
 	```
-	ln -s ~/path/to/project/wp-content/plugins deployments/plugins
-	ln -s ~/path/to/project/wp-content/themes deployments/themes
+	ln -s ~/path/to/project/wp-content/plugins ~/deployments/plugins
+	ln -s ~/path/to/project/wp-content/themes ~/deployments/themes
 	```
 
 9. Run: `sudo wpengine staging|production` to begin deployment process
