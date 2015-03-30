@@ -15,7 +15,7 @@
 #  6. Symlink script for execution without extension:  ln -s /deployments/wpengine.sh /usr/local/bin/wpengine
 #  7. Modify the repos array with the descriptions and *MATCH* up corresponging targets in the targets array. 
 #  8. Symlink all required themes and plugins with local path
-#  9. Run sudo wpengine staging}production to being deployment process
+#  9. Run sudo wpengine staging|production to being deployment process
 # 10. Please purge and clone wpengine repo on initial start to grab the latest wpengine instance
 #
 # That is it, make sure to run the script normally without quiet mode to verify everything works as expected.
