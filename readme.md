@@ -13,6 +13,7 @@ Installation requirements
 -------------------------
 1. Create path `/var/log/wpengine`
 2. Create the following hierarchy:
+
 	```
 	~/deployments/
 		├── plugins/
