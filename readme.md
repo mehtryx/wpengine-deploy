@@ -24,7 +24,7 @@ Installation requirements
 3. Copy the `gitignore` file to `~/deployments/.gitignore`
 4. Copy `wpengine.sh` script to `~/deployments` folder
 5. Set permissions: `chmod 555 ~/deployments/wpengine.sh`
-6. Symlink script for execution without extension: `ln -s ~/deployments/wpengine.sh`
+6. Symlink script for execution without extension: `ln -s ~/deployments/wpengine.sh wpengine`
 7. Modyify the repos array with the descriptions and match up corresponding targets:
 
 	```
