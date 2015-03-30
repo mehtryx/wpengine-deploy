@@ -3,7 +3,7 @@ wpengine deploy
 > Because it would have taken twice as long to build it properly
 
 Deployment script to handle multiple private repositories for themes and
-plugins as Wpengine does not support sub-modules.
+plugins as wpengine does not support sub-modules.
 
 Requirements
 ------------
