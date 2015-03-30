@@ -4,18 +4,19 @@
 #
 #  1. Create path /var/log/wpengine for the logging
 #  2. Create the following hierarchy, or modify the script for deployment files:
-#              ~/deployments
-#           		|---- tmp
-#			|---- themes
-#			|---- plugins
-#			|---- wpengine
-#  3. Copy the gitignore file to ~/deployments/.gitignore
-#  4. Copy this script to ~/deployments
-#  5. Set permissions on script: chmod 555 ~/deployments/wpengine.sh
-#  6. Symlink script for execution without extension:  ln -s ~/deployments/wpengine.sh /usr/local/bin/wpengine
+#		 /deployments
+#			 |---- tmp
+#			 |---- themes
+#			 |---- plugins
+#			 |---- wpengine
+#  3. Copy the gitignore file to /deployments/.gitignore
+#  4. Copy wpnegine.sh to /deployments
+#  5. Set permissions on script: chmod 555 /deployments/wpengine.sh
+#  6. Symlink script for execution without extension:  ln -s /deployments/wpengine.sh /usr/local/bin/wpengine
 #  7. Modify the repos array with the descriptions and *MATCH* up corresponging targets in the targets array. 
-#  8. Clone all required themes and plugins into the ~/deployments/themes and ~/deployments/plugins folders
-#  9. Clone initial wpengine repositories into the path ~/deployments/wpengine/{repo name i.e staging/production}
+#  8. Symlink all required themes and plugins with local path
+#  9. Run sudo wpengine staging}production to being deployment process
+# 10. Please purge and clone wpengine repo on initial start to grab the latest wpengine instance
 #
 # That is it, make sure to run the script normally without quiet mode to verify everything works as expected.
 #
@@ -36,6 +37,7 @@ server=`uname -n`
 target=""
 quiet=false
 skipped=false
+cwd=$(pwd)
 
 log () {
        message="$(date +%Y-%m-%d) $(date +%H:%M:%S) - $user [INFO] - $@"
@@ -162,70 +164,70 @@ fi
 log "Deployment to wpengine $target..."
 
 # clear the tmp folder
-rm -rf ~/deployments/tmp/*
+rm -rf $cwd/tmp/*
 
 # Option to purge repo, if not in quiet mode...this is useful if you think your local repo is out of sync and will cause merge conflicts.
 if ! $quiet; then
 	proceed "Purge and clone new instance of wpengine $target?"
 	if ! $skipped; then
-		log "Purging wpengine folder and cloning ${repos[$target]} to ~/deployments/wpengine/$target" 
-		rm -rf ~/deployments/wpengine/$target
-		git clone ${repos[$target]} ~/deployments/wpengine/$target
+		log "Purging wpengine folder and cloning ${repos[$target]} to wpengine/$target" 
+		rm -rf $cwd/wpengine/$target
+		git clone ${repos[$target]} $cwd/wpengine/$target
 		if [ "$?" != "0" ] ; then
 			failout "Unable to clone ${repos[$target]}"
 		fi
 	else
 		log "Pulling changes from ${repos[$target]}"
-		gitpull ~/deployments/wpengine/$target
+		gitpull $cwd/wpengine/$target
 
 	fi
 fi
 
 # copy in our custom gitignore file
-cp ~/deployments/.gitignore ~/deployments/wpengine/$target/
+cp .gitignore $cwd/wpengine/$target/
 
 echo
 log "Syncing themes...."
-for theme in `ls ~/deployments/themes/`; do
+for theme in `ls $cwd/themes/`; do
 	if ! $quiet; then
 		proceed "Pull changes from $theme?"
 	fi
 	if ! $skipped; then
 		log "Pulling changes from $theme...."
-		gitpull ~/deployments/themes/$theme
+		gitpull $cwd/themes/$theme
 		logcommit
 	fi
 done
 
 echo
 log "Syncing plugins...."
-for plugin in `ls ~/deployments/plugins/`; do
+for plugin in `ls $cwd/plugins/`; do
 	if ! $quiet; then
 		proceed "Pull changes from $plugin?"
 	fi
 	if ! $skipped; then
 		log "Pulling changes from $plugin...."
-		gitpull ~/deployments/plugins/$plugin
+		gitpull $cwd/plugins/$plugin
 		logcommit
 	fi
 done
 
 echo
 log "Transfering files to tmp for inclusion to wpengine..."
-cp -rp ~/deployments/themes ~/deployments/tmp/
-cp -rp ~/deployments/plugins ~/deployments/tmp/
+cp -rp $cwd/themes $cwd/tmp/
+cp -rp $cwd/plugins $cwd/tmp/
 
 echo
 log "Removing git folders (if present) from tmp..."
-find ~/deployments/tmp/ -type d -name .git -exec rm -rf {} \;
+find $cwd/tmp/ -type d -name .git -exec rm -rf {} \;
 
 echo
 log "Moving cleaned repos into wpengine repository..."
-cp -r ~/deployments/tmp/* ~/deployments/wpengine/$target/wp-content/
+cp -r $cwd/tmp/* $cwd/wpengine/$target/wp-content/
 
 echo
 log "Displaying status of wpengine git repo..."
-cd ~/deployments/wpengine/$target
+cd $cwd/wpengine/$target
 git status
 
 echo
@@ -247,4 +249,3 @@ else
 	git add . && git reset --hard HEAD
 fi
 log "completed."
-

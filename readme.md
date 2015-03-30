@@ -15,16 +15,16 @@ Installation requirements
 2. Create the following hierarchy:
 
 	```
-	~/deployments/
+	/deployments/
 		├── plugins/
 		├── themes/
 		├── tmp/
 		└── wpengine/
 	```
-3. Copy the `gitignore` file to `~/deployments/.gitignore`
-4. Copy `wpengine.sh` script to `~/deployments` folder
-5. Set permissions: `chmod 555 ~/deployments/wpengine.sh`
-6. Symlink script for execution without extension: `ln -s ~/deployments/wpengine.sh wpengine`
+3. Copy the `gitignore` file to `/deployments/.gitignore`
+4. Copy `wpengine.sh` script to `/deployments` folder
+5. Set permissions: `chmod 555 /deployments/wpengine.sh`
+6. Symlink script for execution without extension: `ln -s /deployments/wpengine.sh wpengine`
 7. Modyify the repos array with the descriptions and match up corresponding targets:
 
 	```
@@ -42,8 +42,8 @@ Installation requirements
 8. Symlink all required themes and plugins with local path:
 
 	```
-	ln -s ~/path/to/project/wp-content/plugins ~/deployments/plugins
-	ln -s ~/path/to/project/wp-content/themes ~/deployments/themes
+	ln -s ~/path/to/project/wp-content/plugins /deployments/plugins
+	ln -s ~/path/to/project/wp-content/themes /deployments/themes
 	```
 
 9. Run: `sudo wpengine staging|production` to begin deployment process
