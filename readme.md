@@ -49,7 +49,7 @@ Installation requirements
 
 You should have the following listing within deployment:
 
-	```bash
+	```
 	lrwxr-xr-x  1 Justin  staff    68B Mar 27 12:29 plugins -> /path/to/project/wp-content/plugins
 	lrwxr-xr-x  1 Justin  staff    67B Mar 27 12:29 themes -> /path/to/project/wp-content/themes
 	drwxr-xr-x  4 Justin  staff   136B Mar 27 16:16 tmp
