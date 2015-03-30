@@ -13,7 +13,7 @@ Installation requirements
 -------------------------
 1. Create path `/var/log/wpengine`
 2. Create the following hierarchy:
-	```bash
+	```
 	~/deployments/
 		├── plugins/
 		├── themes/
@@ -38,7 +38,7 @@ Installation requirements
 							)
 	```
 8. Symlink all required themes and plugins with local path:
-	```bash
+	```
 	ln -s ~/path/to/project/wp-content/plugins deployments/plugins
 	ln -s ~/path/to/project/wp-content/themes deployments/themes
 	```
