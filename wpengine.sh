@@ -1,4 +1,7 @@
 #!/bin/bash
+# If any commands fail (exit code other than 0) entire script exits
+set -e
+
 #
 # Installation requirements:
 #
@@ -37,7 +40,21 @@ server=`uname -n`
 target=""
 quiet=false
 skipped=false
+
 cwd=$(pwd)
+# Warning, we will be using rm with this variable, we are going to check and prevent usage on root
+if [ -d "$cwd" ];
+then
+	# This is a valid directory, so lets make sure its not root
+	if [ "$(stat -s /)" == "$(stat -s $cwd)" ];
+	then
+		echo "Error: Script executing from root, or pwd returned root path."
+		exit 1
+	fi
+else
+	echo "Error: Script path provided by pwd is not a valid directory path."
+	exit 1
+fi
 
 log () {
        message="$(date +%Y-%m-%d) $(date +%H:%M:%S) - $user [INFO] - $@"
